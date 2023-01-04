@@ -123,9 +123,33 @@ texto2 = '''
 
 texto3 = "Para este ejercicio, debemos procurar que cierren todos (todos) los paréntesis, llaves {}, y corchetes []. También debemos cerrar las comillas simples y dobles. Y que queden bien anidadas. (Por ejemplo, esto está mal: [{hola]})"
 
-'([)]'
+calces = {
+    '(': ')',
+    '{': '}',
+    '[': ']',
+    '<': '>'
+}
+
 def parentesis(texto):
-    pass
+    aperturas = '([{<'
+    cierres = ')]}>'
+
+    pila = []
+    
+    for letra in texto:
+        if letra in aperturas:
+            pila.append(letra)
+        elif letra in cierres:
+            if len(pila) == 0:
+                return False
+            ultima_apertura = pila.pop()
+
+            if calces[ultima_apertura] != letra:
+                return False
+    
+    return len(pila) == 0
+
+import pdb; pdb.set_trace()
 
 
     
