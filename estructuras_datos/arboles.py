@@ -1,3 +1,5 @@
+import json 
+
 class AbbNode:
 
     def __init__(self, key, value, left, right):
@@ -55,12 +57,47 @@ class Abb: # árbol de búsqueda binaria
         
         return self.root.search(key)
 
+class AvlNone(AbbNode):
+
+    def __init__(self, key, value, left, right):
+        super().__init__(key, value, left, right)
+
+    def height(self):
+        if self.left is None and self.right is None:
+            return 1
+        elif self.left is None:
+            return self.right.height() + 1
+        elif self.right is None:
+            return self.left.height() + 1
+        else:
+            return 1 + max(self.left.height(), self.right.height())
+    
+    def count(self):
+        if self.left is None and self.right is None:
+            return 1
+        elif self.left is None:
+            return self.right.count() + 1
+        elif self.right is None:
+            return self.left.count() + 1
+        else:
+            return 1 + self.left.count() + self.right.count()
+
+
+
+
 arbol = Abb()
 arbol.add('Leo', 'qwerd')
 arbol.add('Julia', 'qwerd')
 arbol.add('Maria', 'qwerd')
 arbol.add('Marcelo', 'Ficha médica del Marcelo.')
 arbol.add('Nadia', 'qwerd')
+
+pokefile = open('pokemon.json', 'r')
+pokedict = json.load(pokefile)
+
+pokearbol = AvlNone('Nada', 'Nada', None, None)
+for elem in pokedict['results']:
+    pokearbol.add(elem['name'], elem['url'])
 
 import pdb; pdb.set_trace()
 
