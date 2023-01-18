@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="main"></div>
+  <script>
+    function makematrix (size) {
+      const matrix = []
+
+      for (let i=0; i<size; i++) {
+        const row = []
+        for (let j=0; j<size; j++) {
+          row.push('N')
+        }
+        matrix.push(row)
+      }
+      return matrix
+    }
+    function makespiral(size) {
+      if (size % 2 != 1) {
+        alert('Error, tiene que ser IMPAR')
+        return '0'
+      }
+
+      
+
+    }
+  </script>
+</body>
+</html>
